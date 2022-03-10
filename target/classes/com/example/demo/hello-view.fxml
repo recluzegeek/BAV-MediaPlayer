@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.media.MediaView?>
+
+<BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="590.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#chooseFile" text="Open File" />
+                        <Menu mnemonicParsing="false" text="Open RecentFiles">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="1:" />
+                                <MenuItem mnemonicParsing="false" text="2:" />
+                                <MenuItem mnemonicParsing="false" text="3:" />
+                                <MenuItem mnemonicParsing="false" text="4:" />
+                                <MenuItem mnemonicParsing="false" text="5:" />
+                                <MenuItem mnemonicParsing="false" text="6:" />
+                                <MenuItem mnemonicParsing="false" text="7:" />
+                                <MenuItem mnemonicParsing="false" text="8:" />
+                                <MenuItem mnemonicParsing="false" text="9:" />
+                                <MenuItem mnemonicParsing="false" text="10:" />
+                                <MenuItem mnemonicParsing="false" text="Clear All" />
+                            </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" text="Save File" />
+                        <MenuItem mnemonicParsing="false" text="Export As" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="PlayBack">
+                    <items>
+                        <Menu mnemonicParsing="false" text="Speed">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Faster" />
+                                <MenuItem mnemonicParsing="false" text="Fast" />
+                                <MenuItem mnemonicParsing="false" text="Normal" />
+                                <MenuItem mnemonicParsing="false" text="Slow" />
+                                <MenuItem mnemonicParsing="false" text="Slower" />
+                                <MenuItem mnemonicParsing="false" text="Input Value" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Forward">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="20" />
+                                <MenuItem mnemonicParsing="false" text="15" />
+                                <MenuItem mnemonicParsing="false" text="10" />
+                                <MenuItem mnemonicParsing="false" text="5" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Backward">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="20" />
+                                <MenuItem mnemonicParsing="false" text="15" />
+                                <MenuItem mnemonicParsing="false" text="10" />
+                                <MenuItem mnemonicParsing="false" text="5" />
+                            </items>
+                        </Menu>
+                        <MenuItem mnemonicParsing="false" text="Jump To Specific Time" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Visualizations">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Load From Disk" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <bottom>
+        <BorderPane prefHeight="71.0" prefWidth="702.0" BorderPane.alignment="CENTER">
+            <bottom>
+                <SplitPane dividerPositions="0.21171428571428566, 0.7202857142857142" prefHeight="70.0" prefWidth="702.0" BorderPane.alignment="CENTER">
+                    <items>
+                        <AnchorPane minHeight="0.0" minWidth="140.0" prefHeight="56.0" prefWidth="60.0">
+                            <children>
+                                <HBox layoutY="23.0" minWidth="75.0" prefHeight="31.0" prefWidth="212.0" AnchorPane.bottomAnchor="14.599999999999994" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <children>
+                                        <JFXButton maxWidth="1.7976931348623157E308" text="Loop" HBox.hgrow="ALWAYS" />
+                                        <JFXButton maxWidth="1.7976931348623157E308" minWidth="70.0" text="PlayList" HBox.hgrow="ALWAYS" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="200.0" prefHeight="56.0" prefWidth="283.0">
+                            <children>
+                                <HBox layoutX="15.0" layoutY="23.0" prefHeight="46.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="23.0">
+                                    <children>
+                                        <JFXButton maxWidth="1.7976931348623157E308" text="Prvs" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </JFXButton>
+                                        <JFXButton maxWidth="1.7976931348623157E308" onAction="#play_pauseVideo" text="Play-Pause" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </JFXButton>
+                                        <JFXButton maxWidth="1.7976931348623157E308" text="Next" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets />
+                                            </HBox.margin>
+                                        </JFXButton>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="56.0" prefWidth="288.0">
+                            <children>
+                                <HBox alignment="BASELINE_RIGHT" layoutX="21.0" layoutY="20.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.200000000000017" AnchorPane.topAnchor="40.0">
+                                    <children>
+                                        <JFXSlider fx:id="volumeSlider" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="151.0" value="70.0" HBox.hgrow="ALWAYS">
+                                            <HBox.margin>
+                                                <Insets right="15.0" />
+                                            </HBox.margin>
+                                        </JFXSlider>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
+                    </items>
+                </SplitPane>
+            </bottom>
+            <top>
+                <BorderPane prefHeight="8.0" prefWidth="702.0" BorderPane.alignment="CENTER">
+                    <left>
+                        <HBox prefHeight="31.0" prefWidth="55.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="91.0" text="00:00:00" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                    </left>
+                    <center>
+                        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <JFXSlider fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="14.0" prefWidth="488.0" value="1.0E-5" HBox.hgrow="ALWAYS" />
+                            </children>
+                        </HBox>
+                    </center>
+                    <right>
+                        <HBox prefHeight="31.0" prefWidth="62.0" BorderPane.alignment="CENTER">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00" />
+                            </children>
+                        </HBox>
+                    </right>
+                </BorderPane>
+            </top>
+        </BorderPane>
+    </bottom>
+    <center>
+        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
