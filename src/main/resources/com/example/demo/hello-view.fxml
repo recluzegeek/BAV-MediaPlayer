@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.media.MediaView?>
 
-<BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="590.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -108,7 +108,7 @@
                                                 <Insets />
                                             </HBox.margin>
                                         </JFXButton>
-                                        <JFXButton maxWidth="1.7976931348623157E308" onAction="#play_pauseVideo" text="Play-Pause" HBox.hgrow="ALWAYS">
+                                        <JFXButton fx:id="playButton" maxWidth="1.7976931348623157E308" onAction="#play_pauseVideo" text="&gt;&gt;&gt;" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets />
                                             </HBox.margin>
@@ -143,21 +143,21 @@
                     <left>
                         <HBox prefHeight="31.0" prefWidth="55.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="91.0" text="00:00:00" HBox.hgrow="ALWAYS" />
+                                <Label fx:id="elapsedTime" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="78.0" text="00:00:00" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                     </left>
                     <center>
-                        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <HBox prefHeight="100.0" prefWidth="180.0" BorderPane.alignment="CENTER">
                             <children>
-                                <JFXSlider fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="14.0" prefWidth="488.0" value="1.0E-5" HBox.hgrow="ALWAYS" />
+                                <JFXSlider fx:id="progressBar" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="584.0" value="1.0E-5" HBox.hgrow="ALWAYS" />
                             </children>
                         </HBox>
                     </center>
                     <right>
                         <HBox prefHeight="31.0" prefWidth="62.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00" />
+                                <Label fx:id="totalDuration" alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00" />
                             </children>
                         </HBox>
                     </right>
@@ -166,6 +166,6 @@
         </BorderPane>
     </bottom>
     <center>
-        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" BorderPane.alignment="CENTER" />
+        <MediaView fx:id="mediaView" fitHeight="200.0" fitWidth="200.0" />
     </center>
 </BorderPane>

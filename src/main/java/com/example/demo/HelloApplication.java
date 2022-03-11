@@ -1,7 +1,6 @@
 package com.example.demo;
 
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -25,11 +24,9 @@ public class HelloApplication extends Application {
 
         scene.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-//                System.out.println("In the condiotin");
                 stage.setFullScreen(!stage.isFullScreen());
             }
         });
-//        HelloController.updateValues();
         stage.setScene(scene);
         stage.show();
     }
