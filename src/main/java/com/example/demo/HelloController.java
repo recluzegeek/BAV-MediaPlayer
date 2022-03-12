@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class HelloController {
+    /*Path to the file where all the recent media will be placed...*/
+    private final String recentTextFilepath = "src\\main\\java\\com\\example\\demo\\recent-media.txt";
     @FXML
     private Button playButton;
     @FXML
@@ -46,11 +48,14 @@ public class HelloController {
         File file = fileChooser.showOpenDialog(null);
         String path = file.toURI().toString(); /*To get the path of the file selected by the user.*/
         System.out.println("Path: " + path);
-//        File recentFiles = new File(".\\src\\main\\java\\com.example.beatsaudiovisualizer\\recent-media.txt");
-        File recentFiles = new File("src\\main\\java\\com\\example\\demo\\recent-media.txt");
-        FileWriter fw = new FileWriter(recentFiles, true);
-        fw.write(path + "\n");
 
+        /*FileWriter obj to write recent media to
+        * txt file and can clear the file on demanad...
+        * */
+
+        FileWriter fw = new FileWriter(recentTextFilepath, true);
+        fw.write(path + "\n");
+        fw.close();
 
         /*if the path contains something other than null, then ready the MediaPlayer...*/
 
@@ -136,6 +141,15 @@ public class HelloController {
             return String.valueOf(t);
         }
         return "0" + t;
+    }
+
+    /*Method to clear recent played media items from the file..*/
+
+    public void clearRecentFile() throws IOException{
+        FileWriter writer = new FileWriter(recentTextFilepath);
+        writer.write("");
+        writer.close();
+        System.out.println("Cleared all recent media");
     }
 
     /*Method to be called whenever Play-Pause button is clicked...Uses if-else to switch the signs for play-pause*/

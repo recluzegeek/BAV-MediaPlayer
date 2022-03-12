@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.media.MediaView?>
 
-<BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="700.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
+<BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
@@ -32,7 +32,7 @@
                                 <MenuItem mnemonicParsing="false" text="8:" />
                                 <MenuItem mnemonicParsing="false" text="9:" />
                                 <MenuItem mnemonicParsing="false" text="10:" />
-                                <MenuItem mnemonicParsing="false" text="Clear All" />
+                                <MenuItem mnemonicParsing="false" onAction="#clearRecentFile" text="Clear All" />
                             </items>
                         </Menu>
                         <MenuItem mnemonicParsing="false" text="Save File" />
