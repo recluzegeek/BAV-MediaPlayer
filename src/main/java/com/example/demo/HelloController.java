@@ -4,20 +4,28 @@ package com.example.demo;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.scene.input.KeyCombination;
 import javafx.util.Duration;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Objects;
+
+import static com.example.demo.HelloApplication.*;
 
 public class HelloController {
     /*Path to the file where all the recent media will be placed...*/
@@ -42,16 +50,23 @@ public class HelloController {
 
     public void chooseFile() throws IOException {
 
-        /*FileChooser obj to navigate between directories and choose a file...*/
+//        yourFileChooser.setCurrentDirectory(new File
+//                (System.getProperty("user.home") + System.getProperty("file.separator")+ "Music"));
 
+
+
+        /*FileChooser obj to navigate between directories and choose a file...*/
+        String defaultDir = System.getProperty("user.home") + System.getProperty("file.separator") + "Music";
+        System.out.println("Default" + defaultDir);
         FileChooser fileChooser = new FileChooser();
+//        File file = fileChooser.showOpenDialog(defaultDir);
         File file = fileChooser.showOpenDialog(null);
         String path = file.toURI().toString(); /*To get the path of the file selected by the user.*/
         System.out.println("Path: " + path);
 
         /*FileWriter obj to write recent media to
-        * txt file and can clear the file on demand...
-        * */
+         * txt file and can clear the file on demand...
+         * */
 
         FileWriter fw = new FileWriter(recentTextFilepath, true);
         fw.write(path + "\n");
@@ -79,7 +94,7 @@ public class HelloController {
             widthProperty.bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
             heightProperty.bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
 
-//            mediaView.setPreserveRatio(true);     /*Uncomment this line to set scaling of the video....*/
+            mediaView.setPreserveRatio(true);     /*This line sets the scaling of the video....*/
 
             /*Setting the VolumeSlider of the Player
              * first line sets the slider and the next line has a listener which listens for any changes on the slider
@@ -89,11 +104,24 @@ public class HelloController {
             volumeSlider.setValue(mediaPlayer.getVolume() * 70);
             volumeSlider.valueProperty().addListener(observable -> mediaPlayer.setVolume(volumeSlider.getValue() / 100));
 
+
+
+            /*Under Development Portion */
+            /*--------------------------------------------------------------------------------------------------------------------*/
+            scene.addEventHandler(ScrollEvent.SCROLL, event -> {
+                double movement = event.getDeltaY() / 4 ;
+                int volume = (int) ((mediaPlayer.getVolume()) + movement);
+                mediaPlayer.setVolume(volume);
+                System.out.println("After Volume: " + volume);
+            });
+
+
+            /*--------------------------------------------------------------------------------------------------------------------*/
+
             /*This line sets the progress-bar...Increases as the video plays. Min value is 0 and Max value is set to the duration of the video*/
 
             mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> progressBar.setValue(newValue.toSeconds()));
             progressBar.setOnMousePressed(event -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
-            progressBar.setOnMouseDragged(event1 -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
 
             /*Sets the elapsed time which is a Label on the Player GUI with the fx:id elaspedTime and a totalDuration
              * which are calculated in the getTimeString() method...and then set their values using listener.
@@ -145,7 +173,7 @@ public class HelloController {
 
     /*Method to clear recent played media items from the file..*/
 
-    public void clearRecentFile() throws IOException{
+    public void clearRecentFile() throws IOException {
         FileWriter writer = new FileWriter(recentTextFilepath);
         writer.write("");
         writer.close();
