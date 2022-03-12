@@ -29,8 +29,8 @@ public class HelloApplication extends Application {
 
         /*Setting the min-height && min-width of the stage so it doesn't collapsed*/
 
-        stage.setMinHeight(400);
-        stage.setMinWidth(430);
+        stage.setMinHeight(500);
+        stage.setMinWidth(550);
 
         /*Line of code to enter or exit from the fullscreen on double-clicking the mediaview*/
 

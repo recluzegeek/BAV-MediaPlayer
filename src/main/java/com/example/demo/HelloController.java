@@ -50,7 +50,7 @@ public class HelloController {
         System.out.println("Path: " + path);
 
         /*FileWriter obj to write recent media to
-        * txt file and can clear the file on demanad...
+        * txt file and can clear the file on demand...
         * */
 
         FileWriter fw = new FileWriter(recentTextFilepath, true);
@@ -86,7 +86,7 @@ public class HelloController {
              * and then sets the volume of the player according to the value set by the user...
              * */
 
-            volumeSlider.setValue(mediaPlayer.getVolume() * 100);
+            volumeSlider.setValue(mediaPlayer.getVolume() * 70);
             volumeSlider.valueProperty().addListener(observable -> mediaPlayer.setVolume(volumeSlider.getValue() / 100));
 
             /*This line sets the progress-bar...Increases as the video plays. Min value is 0 and Max value is set to the duration of the video*/
@@ -156,11 +156,11 @@ public class HelloController {
 
     public void play_pauseVideo() {
         if (mediaPlayer.getStatus().equals(MediaPlayer.Status.PLAYING)) {
-            mediaPlayer.pause();
-            playButton.setText(">>");
-        } else {
-            mediaPlayer.play();
             playButton.setText("||");
+            mediaPlayer.pause();
+        } else {
+            playButton.setText(">>");
+            mediaPlayer.play();
         }
     }
 

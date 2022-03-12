@@ -87,7 +87,7 @@
     <bottom>
         <BorderPane prefHeight="71.0" prefWidth="702.0" BorderPane.alignment="CENTER">
             <bottom>
-                <SplitPane dividerPositions="0.21171428571428566, 0.7202857142857142" prefHeight="70.0" prefWidth="702.0" BorderPane.alignment="CENTER">
+                <SplitPane dividerPositions="0.21147260273972598, 0.5910388127853881" prefHeight="70.0" prefWidth="760.0" BorderPane.alignment="CENTER">
                     <items>
                         <AnchorPane minHeight="0.0" minWidth="140.0" prefHeight="56.0" prefWidth="60.0">
                             <children>
@@ -99,9 +99,9 @@
                                 </HBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="200.0" prefHeight="56.0" prefWidth="283.0">
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="200.0" prefHeight="69.0" prefWidth="300.0">
                             <children>
-                                <HBox layoutX="15.0" layoutY="23.0" prefHeight="46.0" prefWidth="253.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="23.0">
+                                <HBox layoutX="15.0" layoutY="23.0" prefHeight="46.0" prefWidth="253.0" AnchorPane.bottomAnchor="14.5" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="23.0">
                                     <children>
                                         <JFXButton maxWidth="1.7976931348623157E308" text="Prvs" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
@@ -122,11 +122,11 @@
                                 </HBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="56.0" prefWidth="288.0">
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="150.0" prefHeight="56.0" prefWidth="288.0">
                             <children>
-                                <HBox alignment="BASELINE_RIGHT" layoutX="21.0" layoutY="20.0" AnchorPane.bottomAnchor="14.600000000000001" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.200000000000017" AnchorPane.topAnchor="40.0">
+                                <HBox alignment="BASELINE_RIGHT" layoutX="21.0" layoutY="20.0" AnchorPane.bottomAnchor="14.5" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.200000000000017" AnchorPane.topAnchor="40.0">
                                     <children>
-                                        <JFXSlider fx:id="volumeSlider" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="151.0" value="70.0" HBox.hgrow="ALWAYS">
+                                        <JFXSlider fx:id="volumeSlider" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="151.0" value="75.0" HBox.hgrow="ALWAYS">
                                             <HBox.margin>
                                                 <Insets right="15.0" />
                                             </HBox.margin>
