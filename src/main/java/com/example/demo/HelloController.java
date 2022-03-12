@@ -2,23 +2,21 @@ package com.example.demo;
 
 /*optimized imports for the file*/
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
+import javafx.scene.control.*;
+import javafx.scene.input.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.input.KeyCombination;
 import javafx.util.Duration;
+
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,6 +28,8 @@ import static com.example.demo.HelloApplication.*;
 public class HelloController {
     /*Path to the file where all the recent media will be placed...*/
     private final String recentTextFilepath = "src\\main\\java\\com\\example\\demo\\recent-media.txt";
+    @FXML
+    private MenuItem exitButton;
     @FXML
     private Button playButton;
     @FXML
@@ -60,7 +60,7 @@ public class HelloController {
         System.out.println("Default" + defaultDir);
         FileChooser fileChooser = new FileChooser();
 //        File file = fileChooser.showOpenDialog(defaultDir);
-        File file = fileChooser.showOpenDialog(null);
+        File file = fileChooser.showOpenDialog(stage1);
         String path = file.toURI().toString(); /*To get the path of the file selected by the user.*/
         System.out.println("Path: " + path);
 
@@ -80,11 +80,15 @@ public class HelloController {
             mediaView.setMediaPlayer(mediaPlayer);
 
             /*To stop a video, when clicked on OpenFile Button while playing a media file*/
-
-            if (Objects.requireNonNull(mediaPlayer).getStatus().equals(MediaPlayer.Status.PLAYING)) {
-                mediaPlayer.stop();
-                System.out.println("\nVideo Stopped...!");
-            }
+//
+//            if (Objects.requireNonNull(mediaPlayer).getStatus().equals(MediaPlayer.Status.PLAYING)) {
+//                mediaPlayer.stop();
+//                System.out.println("\nVideo Stopped...!");
+//            }
+//
+//            if (mediaPlayer!=null){
+//                mediaPlayer.stop();
+//            }
 
             //Creating Bindings for the media to resize with the resizing of the window
 
@@ -104,15 +108,15 @@ public class HelloController {
             volumeSlider.setValue(mediaPlayer.getVolume() * 70);
             volumeSlider.valueProperty().addListener(observable -> mediaPlayer.setVolume(volumeSlider.getValue() / 100));
 
-
+            exitButton.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 
             /*Under Development Portion */
             /*--------------------------------------------------------------------------------------------------------------------*/
             scene.addEventHandler(ScrollEvent.SCROLL, event -> {
-                double movement = event.getDeltaY() / 4 ;
+                double movement = event.getDeltaY() / 4;
                 int volume = (int) ((mediaPlayer.getVolume()) + movement);
                 mediaPlayer.setVolume(volume);
-                System.out.println("After Volume: " + volume);
+                System.out.println("Before Volume: " + volume);
             });
 
 
@@ -192,10 +196,17 @@ public class HelloController {
         }
     }
 
+    /*Close the Program*/
+
+    public void closeProgram() {
+        Platform.exit();
+    }
+
+
     /*To stop the video and makes the MediaPlayer to points to Null*/
 
     private void stopPlaying() {
-        if (Objects.requireNonNull(mediaPlayer).getStatus().equals(MediaPlayer.Status.PLAYING)) {
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer = null;
             System.out.println("\nVideo Stopped....!!!");

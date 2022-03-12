@@ -17,7 +17,7 @@
     <top>
         <MenuBar BorderPane.alignment="CENTER">
             <menus>
-                <Menu mnemonicParsing="false" text="File">
+                <Menu mnemonicParsing="false" text="_File">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#chooseFile" text="Open File" />
                         <Menu mnemonicParsing="false" text="Open RecentFiles">
@@ -37,10 +37,10 @@
                         </Menu>
                         <MenuItem mnemonicParsing="false" text="Save File" />
                         <MenuItem mnemonicParsing="false" text="Export As" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem fx:id="exitButton" mnemonicParsing="false" onAction="#closeProgram" text="Close" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="PlayBack">
+                <Menu mnemonicParsing="false" text="_PlayBack">
                     <items>
                         <Menu mnemonicParsing="false" text="Speed">
                             <items>
@@ -71,12 +71,12 @@
                         <MenuItem mnemonicParsing="false" text="Jump To Specific Time" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Visualizations">
+                <Menu mnemonicParsing="false" text="_Visualizations">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Load From Disk" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Help">
+                <Menu mnemonicParsing="false" text="_Help">
                     <items>
                         <MenuItem mnemonicParsing="false" text="About" />
                     </items>
@@ -122,7 +122,7 @@
                                 </HBox>
                             </children>
                         </AnchorPane>
-                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="150.0" prefHeight="56.0" prefWidth="288.0">
+                        <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="150.0" prefHeight="54.0" prefWidth="284.0">
                             <children>
                                 <HBox alignment="BASELINE_RIGHT" layoutX="21.0" layoutY="20.0" AnchorPane.bottomAnchor="14.5" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.200000000000017" AnchorPane.topAnchor="40.0">
                                     <children>
