@@ -1,6 +1,6 @@
-/*This is dev-changeAudioOnScrolling branch and we'll focus on beta-feature of
-* changing the audio while the mouse scrolls within the scene....
-* */
+/*This is dev-changeAudioOnScrolling branch, and we'll focus on beta-feature of
+ * changing the audio while the mouse scrolls within the scene....
+ * */
 
 package com.example.demo;
 
@@ -9,6 +9,7 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -18,6 +19,7 @@ import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import com.example.demo.HelloApplication;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,6 +28,8 @@ import java.io.IOException;
 public class HelloController {
     /*Path to the file where all the recent media will be placed...*/
     private final String recentTextFilepath = "src\\main\\java\\com\\example\\demo\\recent-media.txt";
+    @FXML
+    private Label showVolumeButton;
     @FXML
     private MenuItem exitButton;
     @FXML
@@ -63,23 +67,21 @@ public class HelloController {
         fw.write(path + "\n");
         fw.close();
 
+        /*To stop a video, when clicked on OpenFile Button while playing a media file*/
+        // stop previous media player and clean up
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.setOnPaused(null);
+            mediaPlayer.setOnPlaying(null);
+            mediaPlayer.setOnReady(null);
+        }
+
         /*if the path contains something other than null, then ready the MediaPlayer...*/
 
         if (path != null) {
             Media media = new Media(path);
             mediaPlayer = new MediaPlayer(media);
             mediaView.setMediaPlayer(mediaPlayer);
-
-            /*To stop a video, when clicked on OpenFile Button while playing a media file*/
-//
-//            if (Objects.requireNonNull(mediaPlayer).getStatus().equals(MediaPlayer.Status.PLAYING)) {
-//                mediaPlayer.stop();
-//                System.out.println("\nVideo Stopped...!");
-//            }
-//
-//            if (mediaPlayer!=null){
-//                mediaPlayer.stop();
-//            }
 
             //Creating Bindings for the media to resize with the resizing of the window
 
@@ -98,15 +100,39 @@ public class HelloController {
 
             volumeSlider.setValue(mediaPlayer.getVolume() * 70);
             volumeSlider.valueProperty().addListener(observable -> mediaPlayer.setVolume(volumeSlider.getValue() / 100));
+            volumeSlider.valueProperty().addListener(observable -> showVolumeButton.setText(Double.toString((int) volumeSlider.getValue()) + "%"));
+
+            /*Under Development Portion */
+            /*--------------------------------------------------------------------------------------------------------------------*/
+            volumeSlider.addEventHandler(ScrollEvent.SCROLL, event -> {
+                double movement = event.getDeltaY() / 4;
+                int volume = (int) (volumeSlider.getValue() + movement);
+                if (volume < 0) {
+                    volume = 0;
+                } else if (volume > 100) {
+                    volume = 100;
+                }
+                int finalVolume = volume;
+                mediaPlayer.setVolume(volume);
+                volumeSlider.adjustValue(volume);
+                showVolumeButton.setText(Double.toString(volume) + "%");
+                System.out.println("Volume: " + volume);
+            });
+
+
+            /*--------------------------------------------------------------------------------------------------------------------*/
+
+            /*Setting shortcut for the application*/
 
             exitButton.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 
             /*This line sets the progress-bar...Increases as the video plays. Min value is 0 and Max value is set to the duration of the video*/
 
             mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> progressBar.setValue(newValue.toSeconds()));
-            progressBar.setOnMousePressed(event -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+            progressBar.setOnMouseClicked(event1 -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+            progressBar.setOnMouseDragged(event -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
 
-            /*Sets the elapsed time which is a Label on the Player GUI with the fx:id elaspedTime and a totalDuration
+            /*Sets the elapsed time which is a Label on the Player GUI with the fx:id elapsedTime and a totalDuration
              * which are calculated in the getTimeString() method...and then set their values using listener.
              * */
 

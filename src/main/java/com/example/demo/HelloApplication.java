@@ -17,12 +17,13 @@ import java.util.Objects;
 
 /*Main Class from your Program will Run...*/
 public class HelloApplication extends Application {
+    public static Scene scene;
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("hello-view.fxml")));   /*hello-view.fxml is the file containing your GUI*/
 
         /*Setting the scene*/
 
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
 
         /*Set the title of the window....*/
 

@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane fx:id="durationTime" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="300.0" minWidth="300.0" prefHeight="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.HelloController">
     <top>
@@ -124,15 +125,20 @@
                         </AnchorPane>
                         <AnchorPane layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="150.0" prefHeight="54.0" prefWidth="284.0">
                             <children>
-                                <HBox alignment="BASELINE_RIGHT" layoutX="21.0" layoutY="20.0" AnchorPane.bottomAnchor="14.5" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="6.200000000000017" AnchorPane.topAnchor="40.0">
-                                    <children>
-                                        <JFXSlider fx:id="volumeSlider" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="151.0" value="75.0" HBox.hgrow="ALWAYS">
-                                            <HBox.margin>
-                                                <Insets right="15.0" />
-                                            </HBox.margin>
+                                <HBox alignment="BASELINE_RIGHT" layoutY="26.0" prefHeight="45.0" prefWidth="207.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="77.0" AnchorPane.topAnchor="26.0">
+                           <children>
+                                        <JFXSlider fx:id="volumeSlider" maxWidth="1.7976931348623157E308" prefHeight="19.0" prefWidth="182.0" value="75.0" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
                                         </JFXSlider>
-                                    </children>
+                           </children>
                                 </HBox>
+                        <Label fx:id="showVolumeButton" layoutX="227.99999999999997" layoutY="25.0" prefHeight="18.0" prefWidth="54.0" text="75.0%" textAlignment="CENTER" AnchorPane.bottomAnchor="25.4" AnchorPane.rightAnchor="1.6000000000000298" AnchorPane.topAnchor="25.0">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
                             </children>
                         </AnchorPane>
                     </items>
@@ -143,7 +149,11 @@
                     <left>
                         <HBox prefHeight="31.0" prefWidth="55.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="elapsedTime" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="18.0" prefWidth="78.0" text="00:00:00" HBox.hgrow="ALWAYS" />
+                        <Label fx:id="elapsedTime" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="74.0" text="00:00:00">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font>
+                        </Label>
                             </children>
                         </HBox>
                     </left>
@@ -157,7 +167,10 @@
                     <right>
                         <HBox prefHeight="31.0" prefWidth="62.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="totalDuration" alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00" />
+                                <Label fx:id="totalDuration" alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00">
+                           <font>
+                              <Font name="System Bold Italic" size="12.0" />
+                           </font></Label>
                             </children>
                         </HBox>
                     </right>
