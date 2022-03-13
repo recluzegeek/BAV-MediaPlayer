@@ -5,8 +5,6 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -14,16 +12,12 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Objects;
-
-import static com.example.demo.HelloApplication.*;
 
 public class HelloController {
     /*Path to the file where all the recent media will be placed...*/
@@ -49,18 +43,11 @@ public class HelloController {
     Then ready the file to be played and some other methods to be performed while initializing the MediaPlayer*/
 
     public void chooseFile() throws IOException {
-
-//        yourFileChooser.setCurrentDirectory(new File
-//                (System.getProperty("user.home") + System.getProperty("file.separator")+ "Music"));
-
-
-
-        /*FileChooser obj to navigate between directories and choose a file...*/
-        String defaultDir = System.getProperty("user.home") + System.getProperty("file.separator") + "Music";
-        System.out.println("Default" + defaultDir);
+        /*Sets the initial directory to the Videos like on Windows it'll be C:\Users\<user-name>\Videos*/
+        File file1 = new File(System.getProperty("user.home"), "\\Videos");
         FileChooser fileChooser = new FileChooser();
-//        File file = fileChooser.showOpenDialog(defaultDir);
-        File file = fileChooser.showOpenDialog(stage1);
+        configureFileChooser(fileChooser, file1);
+        File file = fileChooser.showOpenDialog(null);
         String path = file.toURI().toString(); /*To get the path of the file selected by the user.*/
         System.out.println("Path: " + path);
 
@@ -110,18 +97,6 @@ public class HelloController {
 
             exitButton.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 
-            /*Under Development Portion */
-            /*--------------------------------------------------------------------------------------------------------------------*/
-            scene.addEventHandler(ScrollEvent.SCROLL, event -> {
-                double movement = event.getDeltaY() / 4;
-                int volume = (int) ((mediaPlayer.getVolume()) + movement);
-                mediaPlayer.setVolume(volume);
-                System.out.println("Before Volume: " + volume);
-            });
-
-
-            /*--------------------------------------------------------------------------------------------------------------------*/
-
             /*This line sets the progress-bar...Increases as the video plays. Min value is 0 and Max value is set to the duration of the video*/
 
             mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> progressBar.setValue(newValue.toSeconds()));
@@ -151,6 +126,13 @@ public class HelloController {
             /*Plays the Media captured by the user...*/
             mediaPlayer.play();
         }
+    }
+
+    /*Method to set the initial directory of the FileChooser to the Videos Directory*/
+
+    private static void configureFileChooser(final FileChooser fileChooser, File file1) {
+        fileChooser.setTitle("Select File to Play");
+        fileChooser.setInitialDirectory(file1);
     }
 
     /*Method to calculate the Elapsed Time of the Media...HH:MM:SS format*/
