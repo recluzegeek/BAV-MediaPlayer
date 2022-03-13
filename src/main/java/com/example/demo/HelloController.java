@@ -97,39 +97,52 @@ public class HelloController {
              * first line sets the slider and the next line has a listener which listens for any changes on the slider
              * and then sets the volume of the player according to the value set by the user...
              * */
-
+//                This line sets the default value of the volume and set it to 70
             volumeSlider.setValue(mediaPlayer.getVolume() * 70);
+//                  This line listens for any changes on the volumeSlider via the mouse-clicks and sets the value of the volumeSlider...
             volumeSlider.valueProperty().addListener(observable -> mediaPlayer.setVolume(volumeSlider.getValue() / 100));
+//                  This line listens for the changes on the volumeSlider and displays its value on the showVolumeButton Label.....
             volumeSlider.valueProperty().addListener(observable -> showVolumeButton.setText(Double.toString((int) volumeSlider.getValue()) + "%"));
 
-            /*Under Development Portion */
+            /*Under Development Portion...This Portion has been completed🤩🤩🤩😀😀😏😑😑😜 */
             /*--------------------------------------------------------------------------------------------------------------------*/
+            /*This code block listens for any Mouse Scrolling and then sets the volume according to the scrolling level*/
+
             volumeSlider.addEventHandler(ScrollEvent.SCROLL, event -> {
+                /*Movement variable captures how much mouse has Scrolled and then divides it by 4 to get an avg value of 8-9
+                 * which means whenever user scrolls he'll experience a volume change of 8-9 units depending on the scrolling
+                 * either positive or negative....
+                 */
+
                 double movement = event.getDeltaY() / 4;
+//               Make changes to the volume by adding the movement variable to the current value of the volumeSlider....
                 int volume = (int) (volumeSlider.getValue() + movement);
+//                If the value of the volume is greater than 100, make it equals to 100,
+//                else if the value is negative make it equal to 0....
                 if (volume < 0) {
                     volume = 0;
                 } else if (volume > 100) {
                     volume = 100;
                 }
-                int finalVolume = volume;
-                mediaPlayer.setVolume(volume);
-                volumeSlider.adjustValue(volume);
-                showVolumeButton.setText(Double.toString(volume) + "%");
+                mediaPlayer.setVolume(volume);      /*Sets the value of the volume to the Media*/
+                volumeSlider.adjustValue(volume);   /*Sets the value of the Volume to the volumeSlider*/
+                showVolumeButton.setText(Double.toString(volume) + "%");/*Displays the value of the volume to the showVolumeButton Label*/
                 System.out.println("Volume: " + volume);
             });
 
-
             /*--------------------------------------------------------------------------------------------------------------------*/
 
-            /*Setting shortcut for the application*/
-
+            /*Setting shortcut for the application which obviously didn't work in the first try...
+             * will work on this latter on....Leaving here as it is, so I won't forget about this feature....
+             * */
             exitButton.setAccelerator(new KeyCodeCombination(KeyCode.E, KeyCombination.CONTROL_DOWN));
 
             /*This line sets the progress-bar...Increases as the video plays. Min value is 0 and Max value is set to the duration of the video*/
 
             mediaPlayer.currentTimeProperty().addListener((observable, oldValue, newValue) -> progressBar.setValue(newValue.toSeconds()));
-            progressBar.setOnMouseClicked(event1 -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+            /*This line sets the new value of the progressBar whenever mouse-button is pressed on to the progressbar*/
+            progressBar.setOnMousePressed(event1 -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
+            /*This line sets the new value of the progressBar whenever mouse-button is dragged over the progressbar*/
             progressBar.setOnMouseDragged(event -> mediaPlayer.seek(Duration.seconds(progressBar.getValue())));
 
             /*Sets the elapsed time which is a Label on the Player GUI with the fx:id elapsedTime and a totalDuration
@@ -158,7 +171,12 @@ public class HelloController {
         }
     }
 
-    /*Method to set the initial directory of the FileChooser to the Videos Directory*/
+    /*Method to set the initial directory of the FileChooser to the Videos Directory
+     * means whenever fileChooser dialog appears, it should already be in the somewhat
+     * specified directory like in this example it is set to open to C:\Users\<user-name>\Videos
+     *You can set it to the Music directory of the user by C:\Users\<user-name>\Music
+     * System.getProperty("user.home") gives us the user-directory
+     */
 
     private static void configureFileChooser(final FileChooser fileChooser, File file1) {
         fileChooser.setTitle("Select File to Play");
@@ -214,18 +232,7 @@ public class HelloController {
         Platform.exit();
     }
 
-
-    /*To stop the video and makes the MediaPlayer to points to Null*/
-
-    private void stopPlaying() {
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            mediaPlayer = null;
-            System.out.println("\nVideo Stopped....!!!");
-        }
-    }
-
-    /*Method to get call whenever you wants to skip your media...Pass the value as an argument and enter the
+    /*Method to get call whenever you want to skip your media...Pass the value as an argument and enter the
      * double argument to the method
      */
 

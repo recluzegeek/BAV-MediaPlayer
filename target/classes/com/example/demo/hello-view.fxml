@@ -151,7 +151,7 @@
                             <children>
                         <Label fx:id="elapsedTime" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="18.0" prefWidth="74.0" text="00:00:00">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
                             </children>
@@ -169,7 +169,7 @@
                             <children>
                                 <Label fx:id="totalDuration" alignment="CENTER" prefHeight="18.0" prefWidth="74.0" text="00:00:00">
                            <font>
-                              <Font name="System Bold Italic" size="12.0" />
+                              <Font name="System Bold" size="12.0" />
                            </font></Label>
                             </children>
                         </HBox>
