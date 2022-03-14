@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BAV-MediaPlayer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/BAV_MediaPlayer_jar</output-path>
+    <root id="archive" name="BAV-MediaPlayer.jar">
+      <element id="module-output" name="BAV-MediaPlayer" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../../Program Files/Java/jfoenix-9.0.10.jar" path-in-jar="/" />
+      <element id="library" level="project" name="jfoenix-9.0.10" />
+    </root>
+  </artifact>
+</component>

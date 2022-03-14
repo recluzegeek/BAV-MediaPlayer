@@ -10,6 +10,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -24,18 +25,19 @@ public class HelloApplication extends Application {
         /*Setting the scene*/
 
         scene = new Scene(root);
+        scene.setFill(Color.BLACK);
 
         /*Set the title of the window....*/
 
         stage.setTitle("BAV MediaPlayer");
 //        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("main.css")).toExternalForm());  /*Uncomment this line to add your CSS file*/
 
-        /*Setting the min-height && min-width of the stage so it doesn't collapsed*/
+        /*Setting the min-height && min-width of the stage, so it doesn't collapse*/
 
         stage.setMinHeight(500);
         stage.setMinWidth(550);
 
-        /*Line of code to enter or exit from the fullscreen on double-clicking the mediaview*/
+        /*Line of code to enter or exit from the fullscreen on double-clicking the mediaView*/
 
         scene.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
