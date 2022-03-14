@@ -1,6 +1,9 @@
-/*This is dev-changeAudioOnScrolling branch, and we'll focus on beta-feature of
- * changing the audio while the mouse scrolls within the scene....
- * */
+/*This is dev-makeMediaPlayerSceneResponsive branch, and we'll focus on making the mediaPlayer scene
+ *responsive....For now, the UI is implemented using BorderPane as the root container, and we've used the
+ * root's BorderPane top and bottom and placed the mediaPlayer to the center of the BorderPane which stretches
+ * to occupy all space available in the window, which means that it will also be on the top and bottom of the
+ * BorderPane which for surely I don't want...
+ */
 
 package com.example.demo;
 
@@ -9,6 +12,8 @@ package com.example.demo;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.DoubleProperty;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.*;
@@ -27,6 +32,8 @@ public class HelloController {
     private final String recentTextFilepath = "src\\main\\java\\com\\example\\demo\\recent-media.txt";
     @FXML
     private Label showVolumeButton;
+    @FXML
+    private Button loopTheVideoButton;
     @FXML
     private MenuItem exitButton;
     @FXML
@@ -128,6 +135,21 @@ public class HelloController {
             });
 
             /*--------------------------------------------------------------------------------------------------------------------*/
+
+            /*Looping the video using Button*/
+            loopTheVideoButton.setOnAction(actionEvent -> mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE));
+            loopTheVideoButton.setOnAction(actionEvent -> loopTheVideoButton.setText("Looping"));
+            EventHandler<ActionEvent> event2 = new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e) {
+                    loopTheVideoButton.setText("Loop Video");
+                }
+            };
+
+//            if (mediaPlayer.getCycleCount() != MediaPlayer.INDEFINITE) {
+//                loopTheVideoButton.setOnAction(actionEvent -> mediaPlayer.setCycleCount(0));
+//                loopTheVideoButton.setOnAction(event2);
+//                System.out.println("Stopped Looping...!");
+//            }
 
             /*Setting shortcut for the application which obviously didn't work in the first try...
              * will work on this latter on....Leaving here as it is, so I won't forget about this feature....
